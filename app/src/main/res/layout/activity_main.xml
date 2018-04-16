@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/wall"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="ceptebakicim.com.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/logo" />
+
+            <TextView
+                android:id="@+id/textMerhaba"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:text="Yeni Nesil Bakıcı Platformu"
+                android:textColor="#fff"
+                android:textSize="19sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btn1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn1"
+                android:paddingLeft="10dp"
+                android:text="teklif işlemleri"
+                android:textAlignment="textStart"
+                android:textColor="#ffffff"
+                android:textSize="13sp"
+                tools:ignore="RtlCompat" />
+
+            <Button
+                android:id="@+id/btn2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn2"
+                android:paddingLeft="10dp"
+                android:text="bakıcı işlemleri"
+                android:textAlignment="textStart"
+                android:textColor="#ffffff"
+                android:textSize="13sp"
+                tools:ignore="RtlCompat" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btn3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn3"
+                android:paddingLeft="10dp"
+                android:text="mesajlar"
+                android:textAlignment="textStart"
+                android:textColor="#ffffff"
+                android:textSize="13sp"
+                tools:ignore="RtlCompat" />
+
+            <Button
+                android:id="@+id/btn4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn4"
+                android:paddingLeft="10dp"
+                android:text="hesabım"
+                android:textAlignment="textStart"
+                android:textColor="#ffffff"
+                android:textSize="13sp"
+                tools:ignore="RtlCompat" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/logout" />
+
+    </LinearLayout>
+
+</ScrollView>

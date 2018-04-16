@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/view1"
+        android:enabled="true"
+        android:title="view1"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/view2"
+        android:title="view2"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/view3"
+        android:title="view3"
+        app:showAsAction="ifRoom" />
+</menu>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+    <group android:checkableBehavior="single">
+    </group>
+    -->
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="@string/profile" />
+
+    <item
+        android:id="@+id/nav_chat"
+        android:icon="@drawable/ic_chat_black_24dp"
+        android:title="Mesajlaş" />
+
+    <item
+        android:id="@+id/nav_banaOzelBakici"
+        android:icon="@drawable/ic_menu_send"
+        android:title="Bana Özel"
+        android:visible="false" />
+
+    <item
+        android:id="@+id/nav_logOut"
+        android:icon="@drawable/ic_exit_to_app_black_24dp"
+        android:title="@string/log_out" />
+
+    <item
+        android:id="@+id/nav_keepers"
+        android:title="@string/keepers">
+        <menu>
+            <item
+                android:id="@+id/nav_allKeepers"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/all_keepers" />
+            <item
+                android:id="@+id/nav_offeredKeepers"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/offered_keepers" />
+            <item
+                android:id="@+id/nav_acceptedKeepers"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/accepted_keepers" />
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/nav_offers"
+        android:title="@string/offers">
+        <menu>
+            <item
+                android:id="@+id/nav_createOffer"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/create_offer" />
+            <item
+                android:id="@+id/nav_acceptedOffers"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/accepted_offers" />
+            <item
+                android:id="@+id/nav_waitingOffers"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/waiting_offers" />
+        </menu>
+    </item>
+
+</menu>

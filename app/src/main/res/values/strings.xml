@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">Cepte Bakicim</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Ayarlar</string>
+    <string name="title_activity_login">Kayıt Ol</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email" translatable="false">Email</string>
+    <string name="prompt_password">Şifre</string>
+    <string name="action_sign_in">Giriş Yap</string>
+    <string name="error_invalid_email">Email geçersiz</string>
+    <string name="error_invalid_password">Şifre çok kısa</string>
+    <string name="error_incorrect_password">Şifre yanlış</string>
+    <string name="error_field_required">Bu alan zorunludur</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+    <string name="home">Anasayfa</string>
+    <string name="profile">Profil</string>
+    <string name="log_out">Çıkış Yap</string>
+    <string name="keepers">Bakıcılar</string>
+    <string name="all_keepers">Tüm Bakıcılar</string>
+    <string name="offered_keepers">Teklif Gönderdiklerim</string>
+    <string name="accepted_keepers">Kabul Edenler</string>
+    <string name="offers">Teklifler</string>
+    <string name="create_offer">Teklif Oluştur</string>
+    <string name="accepted_offers">Onaylanmış Teklifler</string>
+    <string name="waiting_offers">Bekleyen Teklifler</string>
+    <string name="waiting_for_accept">Onay Bekliyor</string>
+    <string name="con_error">Bağlantı hatası oluştu.</string>
+    <string name="family">Aile</string>
+    <string name="interview">Görüşme</string>
+    <string name="select_nationality">Uyruk Seçiniz</string>
+    <string name="select_working_style">Çalışma şekli</string>
+    <string name="select_language">Dil seçiniz</string>
+    <string name="salary">Maaş</string>
+    <string name="in_interview">Görüşmede Olduklarım</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_asd">AsdActivity</string>
+</resources>

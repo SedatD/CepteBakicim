@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#ff4081</color>
+    <color name="white">#FFF</color>
+    <color name="black">#000</color>
+    <color name="gray">#E0E0E0</color>
+    <color name="orange">#FFA726</color>
+    <color name="lightorange">#FFB300</color>
+    <color name="verylightorange">#FFCA28</color>
+    <color name="turquise">#81D4FA</color>
+    <color name="lightgreen">#9CCC65</color>
+    <color name="lightblue">#29B6F6</color>
+    <color name="red800">#C62828</color>
+    <color name="orange700">#E64A19</color>
+    <color name="purple700">#512DA8</color>
+    <color name="darkgrey">#9E9E9E</color>
+    <color name="brown300">#A1887F</color>
+    <color name="brown400">#8D6E63</color>
+    <color name="brown500">#795548</color>
+    <color name="brown600">#6D4C41</color>
+    <color name="pink600">#D81B60</color>
+    <color name="pink700">#C2185B</color>
+    <color name="pink800">#AD1457</color>
+    <color name="pink500">#E91E63</color>
+    <color name="webOrange">#FF9800</color>
+    <color name="mainText">#FFB74D</color>
+    <color name="lightRed">#FFEBEE</color>
+    <color name="beklemede">#F9A825</color>
+    <color name="onaylanan">#00C853</color>
+
+
+
+    <color name="album_title">#4c4c4c</color>
+</resources>

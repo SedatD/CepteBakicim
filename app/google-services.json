@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "972994779624",
+    "firebase_url": "https://ceptebakicim-6ca37.firebaseio.com",
+    "project_id": "ceptebakicim-6ca37",
+    "storage_bucket": "ceptebakicim-6ca37.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:972994779624:android:fca7c766af7eca9d",
+        "android_client_info": {
+          "package_name": "ceptebakicim.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "972994779624-ruaq863lcfks55rofvc6lese4bkfnaco.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ceptebakicim.com",
+            "certificate_hash": "e7ac6a000ecca2c2b6c4a42e465d064f4de8df15"
+          }
+        },
+        {
+          "client_id": "972994779624-06cs6lvnrjabmos5rli2r7177d36rsfn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDueW_ztFIByrZKntOYk4ipCx4VM3gFEsk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "972994779624-06cs6lvnrjabmos5rli2r7177d36rsfn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

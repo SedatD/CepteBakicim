@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="ceptebakicim.com"
+    android:label="@string/app_name">
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar">
+        <meta-data
+            android:name="com.onesignal.NotificationOpened.DEFAULT"
+            android:value="DISABLE" />
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="84f99f74b898c9812ce4c7e6ec762888b51241fd"
+            tools:replace="android:value"/>
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activity.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity.ProfileActivity" />
+        <activity android:name=".Activity.TumBakicilarActivity" />
+        <activity android:name=".Activity.TeklifDetayActivity" />
+        <activity android:name=".Activity.CvActivity" />
+        <activity android:name=".Activity.TeklifGonderdiklerimActivity" />
+        <activity android:name=".Activity.KabulEdenlerActivity" />
+        <activity android:name=".Activity.TeklifOlusturActivity" />
+        <activity android:name=".Activity.TeklifGonderActivity" />
+        <activity android:name=".Activity.KabulEdilenActivity" />
+        <activity android:name=".Activity.KabulBekleyenActivity" />
+        <activity
+            android:name=".Activity.ChatActivity"
+            android:label="@string/title_activity_asd"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activity.ChatRoomActivity" />
+        <activity android:name=".Activity.BakiciBanaOzelActivity" />
+        <activity android:name=".Activity.ChatPublicActivity" />
+        <activity android:name=".Activity.TeklifIslemleriActivity" />
+        <activity android:name=".Activity.ChatPublicAileActivity"></activity>
+    </application>
+
+</manifest>

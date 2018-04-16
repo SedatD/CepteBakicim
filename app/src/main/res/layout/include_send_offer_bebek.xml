@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Spinner
+        android:id="@+id/spinner_cocuk_yas"
+        style="@style/spinner_style" />
+
+    <Spinner
+        android:id="@+id/spinner_cocuk_okul"
+        style="@style/spinner_style"
+        android:visibility="gone" />
+
+    <Spinner
+        android:id="@+id/spinner_anne_calisiyor_mu"
+        style="@style/spinner_style" />
+
+    <Spinner
+        android:id="@+id/spinner_cocuk_hasta_mi"
+        style="@style/spinner_style" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textColorHint="#ffffff"
+        android:layout_marginTop="10dp"
+        android:hint="Hastalık açıklaması"
+        android:inputType="text"
+        android:visibility="gone" />
+
+    <Spinner
+        android:id="@+id/spinner_temizlik"
+        style="@style/spinner_style" />
+
+    <Spinner
+        android:id="@+id/spinner_yemek"
+        style="@style/spinner_style" />
+
+</LinearLayout>
