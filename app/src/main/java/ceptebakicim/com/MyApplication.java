@@ -10,11 +10,11 @@ import com.onesignal.OSNotificationAction;
 import com.onesignal.OSNotificationOpenResult;
 import com.onesignal.OneSignal;
 
-import io.fabric.sdk.android.Fabric;
 import org.json.JSONObject;
 
 import ceptebakicim.com.Activity.BakiciBanaOzelActivity;
 import ceptebakicim.com.Activity.TeklifDetayActivity;
+import io.fabric.sdk.android.Fabric;
 
 /**
  * Created by SD on 8.02.2018.
@@ -83,6 +83,10 @@ public class MyApplication extends Application {
                                 e.printStackTrace();
                             }
 
+                        } else {
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
                         }
 
                         if (actionType == OSNotificationAction.ActionType.ActionTaken)

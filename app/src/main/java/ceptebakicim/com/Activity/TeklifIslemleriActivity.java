@@ -135,9 +135,10 @@ public class TeklifIslemleriActivity extends AppCompatActivity implements View.O
                 startActivity(intent);
                 break;
             case R.id.btn3:
-                intent = new Intent(TeklifIslemleriActivity.this, TeklifGonderActivity.class);
+                Toast.makeText(this, "Yapım aşamasında", Toast.LENGTH_SHORT).show();
+                /*intent = new Intent(TeklifIslemleriActivity.this, TeklifGonderActivity.class);
                 intent.putExtra("id", 3);
-                startActivity(intent);
+                startActivity(intent);*/
                 break;
             case R.id.btn4:
                 intent = new Intent(TeklifIslemleriActivity.this, TeklifGonderActivity.class);

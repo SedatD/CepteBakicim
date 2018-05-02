@@ -1,6 +1,8 @@
 package ceptebakicim.com.Activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
@@ -85,7 +87,9 @@ public class ChatPublicAileActivity extends AppCompatActivity implements View.On
                 editText.setText("");
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy (HH:mm:ss)");
                 final String zaman = sdf.format(new Date());
-                databaseReferencePublicAileChat.getRef().push().setValue(new Mesaj(gonderen, mesaj, zaman));
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                int userId = preferences.getInt("userId", -1);
+                databaseReferencePublicAileChat.getRef().push().setValue(new Mesaj(gonderen, mesaj,userId+"", zaman));
                 break;
         }
     }

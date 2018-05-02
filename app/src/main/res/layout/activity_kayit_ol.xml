@@ -10,7 +10,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ceptebakicim.com.Activity.LoginActivity">
+    tools:context="ceptebakicim.com.Activity.KayitOlActivity">
 
     <ProgressBar
         android:id="@+id/login_progress"
@@ -47,18 +47,30 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="20dp"
-                android:text="Yeni Nesil Bakıcı Platformu"
+                android:text="Aile Kayıt Ol"
                 android:textColor="#fff"
                 android:textSize="19sp" />
 
-            <AutoCompleteTextView
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/edittextshapeborder"
+                android:hint="Ad Soyad"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff" />
+
+            <EditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/edittextshapeborder"
-                android:drawableLeft="@drawable/kisi"
-                android:drawablePadding="10dp"
-                android:drawableStart="@drawable/kisi"
                 android:hint="@string/prompt_email"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
@@ -68,43 +80,42 @@
                 android:textColorHint="#ffffff" />
 
             <EditText
+                android:id="@+id/tel"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/edittextshapeborder"
+                android:hint="Telefon"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff" />
+
+            <EditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/edittextshapeborder"
-                android:drawableLeft="@drawable/anahtar"
-                android:drawablePadding="10dp"
-                android:drawableStart="@drawable/anahtar"
                 android:hint="@string/prompt_password"
-                android:imeActionId="@+id/login"
-                android:imeActionLabel="@string/action_sign_in"
-                android:imeOptions="actionUnspecified"
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:paddingLeft="10dp"
                 android:singleLine="true"
                 android:textColor="#ffffff"
-                android:textColorHint="#ffffff"
-                tools:ignore="InvalidImeActionId" />
+                android:textColorHint="#ffffff" />
 
-            <TextView
-                android:id="@+id/textView_kayit"
-                android:text="Kayıt Ol"
-                android:textColor="#fff"
-                android:layout_marginTop="16dp"
-                android:layout_gravity="end"
-                android:textSize="19sp"
+            <Button
+                android:id="@+id/button_kayit"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <ImageButton
-                android:id="@+id/email_sign_in_button"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/asd" />
+                android:layout_marginTop="32dp"
+                android:background="@color/lightblue"
+                android:text="kayIt ol"
+                android:textColor="#fff" />
 
         </LinearLayout>
     </ScrollView>

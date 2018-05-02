@@ -32,6 +32,7 @@ import ceptebakicim.com.Activity.ChatActivity;
 import ceptebakicim.com.Activity.ChatRoomActivity;
 import ceptebakicim.com.Activity.CvActivity;
 import ceptebakicim.com.Activity.LoginActivity;
+import ceptebakicim.com.Activity.ProfileActivity;
 import ceptebakicim.com.Activity.TeklifIslemleriActivity;
 import ceptebakicim.com.Activity.TumBakicilarActivity;
 
@@ -211,8 +212,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(MainActivity.this, ChatRoomActivity.class));
                 break;
             case R.id.btn4:
-                Toast.makeText(this, "Yapım aşamasında", Toast.LENGTH_SHORT).show();
-                //startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
                 break;
             case R.id.btnLogout:
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -229,7 +229,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 AuthUI.getInstance().signOut(this).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(MainActivity.this, "Çıkış yaptınız", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, "Çıkış yaptınız", Toast.LENGTH_SHORT).show();
                     }
                 });
                 break;

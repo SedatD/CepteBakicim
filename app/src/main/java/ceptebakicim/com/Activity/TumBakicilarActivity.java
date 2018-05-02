@@ -238,8 +238,10 @@ public class TumBakicilarActivity extends AppCompatActivity implements AdapterVi
         // spinner uyruk
         List<String> categories = new ArrayList<String>();
         categories.add(getString(R.string.select_nationality));
+        categories.add("Azerbaycan");
         categories.add("Özbekistan");
         categories.add("Türkmenistan");
+        categories.add("Tacikistan");
         categories.add("Gürcistan");
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.my_spinner_item, categories);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

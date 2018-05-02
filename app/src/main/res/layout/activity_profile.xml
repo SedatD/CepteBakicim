@@ -8,30 +8,23 @@
     android:padding="16dp"
     tools:context="ceptebakicim.com.Activity.ProfileActivity">
 
-    <ImageButton
-        android:id="@+id/imageButton"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/com_facebook_profile_picture_blank_portrait" />
+        android:clickable="true"
+        android:focusable="true" />
 
-    <EditText
-        android:id="@+id/editText_name"
+    <TextView
+        android:id="@+id/textView_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:hint="İsim Soyisim"
-        android:textColor="#ffffff"
-        android:textColorHint="#ffffff" />
-
-    <EditText
-        android:id="@+id/editText_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:hint="Yeni Şifre"
-        android:textColor="#ffffff"
-        android:textColorHint="#ffffff" />
+        android:gravity="center"
+        android:padding="2dp"
+        android:textColor="#fff"
+        android:textSize="19sp"
+        tools:text="asdasdasd" />
 
     <EditText
         android:id="@+id/editText_phone"
@@ -43,41 +36,35 @@
         android:textColor="#ffffff"
         android:textColorHint="#ffffff" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout_aile"
+    <EditText
+        android:id="@+id/editText_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <EditText
-            android:id="@+id/editText_address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Adres"
-            android:textColor="#ffffff"
-            android:textColorHint="#ffffff" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout_bakici"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-    </LinearLayout>
+        android:layout_marginTop="8dp"
+        android:hint="Adres"
+        android:textColor="#ffffff"
+        android:textColorHint="#ffffff" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/ise_alma"
         android:text="gÜncelle"
         android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/textView_sifreDegistir"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="end"
+        android:text="Şifrenizi Değiştirmek İçin Tıklayınız"
+        android:textColor="#fff"
+        android:textSize="15sp" />
 
 </LinearLayout>

@@ -129,16 +129,21 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+        findViewById(R.id.textView_kayit).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, KayitOlActivity.class));
+            }
+        });
 
 
     }
 
     private void logUser(int userId, String mEmail, String mName) {
-        Crashlytics.setUserIdentifier(userId+"");
+        Crashlytics.setUserIdentifier(userId + "");
         Crashlytics.setUserEmail(mEmail);
         Crashlytics.setUserName(mName);
     }
-
 
     private void Request(final String mEmail, final String mPassword) {
         final String osi = OneSignal.getPermissionSubscriptionState().getSubscriptionStatus().getUserId();
@@ -159,7 +164,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 editor.putString("userName", response.getString("name"));
                                 editor.putString("userEmail", response.getString("email"));
                                 editor.putString("userPhoto", response.getString("imageYolu"));
-                                editor.putString("oneSignalId", osi);
                                 editor.apply();
 
                                 signIn(mEmail, mPassword, response.getString("name"));
@@ -199,7 +203,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private void signIn(final String mEmail, final String mPassword, final String mName) {
-        firebaseAuth.signInWithEmailAndPassword(mEmail, mPassword).addOnCompleteListener(LoginActivity.this,new OnCompleteListener<AuthResult>() {
+        firebaseAuth.signInWithEmailAndPassword(mEmail, mPassword).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
@@ -208,10 +212,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                     int userId = preferences.getInt("userId", -1);
 
-                    databaseReference = firebaseDatabase.getReference("Users");
-                    databaseReference.getRef().child(userId + "").setValue(new User(mName, mEmail, OneSignal.getPermissionSubscriptionState().getSubscriptionStatus().getUserId()));
+                    logUser(userId, mEmail, mName);
 
-                    logUser(userId,mEmail,mName);
+                    databaseReference = firebaseDatabase.getReference("Users");
+                    databaseReference.getRef().child(userId + "").setValue(new User(mName, mEmail));
 
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();

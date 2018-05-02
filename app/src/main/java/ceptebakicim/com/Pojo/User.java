@@ -7,15 +7,14 @@ package ceptebakicim.com.Pojo;
  */
 
 public class User {
-    private String name,mail,oneSignalId;
+    private String name,mail;
 
     public User() {
     }
 
-    public User(String name, String mail, String oneSignalId) {
+    public User(String name, String mail) {
         this.name = name;
         this.mail = mail;
-        this.oneSignalId = oneSignalId;
     }
 
     public String getName() {
@@ -24,10 +23,6 @@ public class User {
 
     public String getMail() {
         return mail;
-    }
-
-    public String getOneSignalId() {
-        return oneSignalId;
     }
 
 }

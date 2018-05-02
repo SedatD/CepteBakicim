@@ -1,16 +1,27 @@
 package ceptebakicim.com.Activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -20,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.onesignal.OneSignal;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -29,7 +41,6 @@ import java.util.Date;
 
 import ceptebakicim.com.Adapter.ChatActAdapter;
 import ceptebakicim.com.Pojo.Mesaj;
-import ceptebakicim.com.Pojo.User;
 import ceptebakicim.com.R;
 
 public class ChatActivity extends AppCompatActivity implements View.OnClickListener {
@@ -44,7 +55,9 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     private ListView listView;
 
     private int userId, userType, chatId;
-    private String roomName, oneSignalId = null;
+    private String roomName, oneSignalId = null, webSignalID = null;
+
+    private ImageView imageView_photo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +65,14 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_chat);
 
         textView = findViewById(R.id.textView2);
+        LinearLayout linlay = findViewById(R.id.linlay);
+        imageView_photo = findViewById(R.id.imageView_photo);
         editText = findViewById(R.id.editText4);
         buttonSend = findViewById(R.id.imageButton);
         listView = findViewById(R.id.listview);
         listView.setDivider(null);
         buttonSend.setOnClickListener(this);
+        linlay.setOnClickListener(this);
 
         chatId = getIntent().getIntExtra("chatId", -1);
 
@@ -64,6 +80,8 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this, "Bir hata oluştu. Tekrar deneyiniz.", Toast.LENGTH_LONG).show();
             finish();
         }
+
+        request(chatId);
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         userId = preferences.getInt("userId", -1);
@@ -110,14 +128,19 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        databaseReferenceUsers.addValueEventListener(new ValueEventListener() {
+        /*databaseReferenceUsers.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren())
                     if (Integer.parseInt(ds.getKey()) == chatId) {
                         User user = ds.getValue(User.class);
-                        textView.setText(user.getName());
-                        oneSignalId = user.getOneSignalId();
+                        if (user != null) {
+                            textView.setText(user.getName());
+                            oneSignalId = user.getOneSignalId();
+                        } else {
+                            Toast.makeText(ChatActivity.this, "Bir hata oluştu. Tekrar deneyiniz.", Toast.LENGTH_LONG).show();
+                            finish();
+                        }
                     }
             }
 
@@ -125,7 +148,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
         /*databaseReferenceChats.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -143,6 +166,40 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    private void request(int id) {
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext().getApplicationContext());
+        final String url = "https://www.ceptebakicim.com/json/userList?userType=2&userId=" + id;
+        JsonArrayRequest getRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.wtf("ChatAct request", "response : " + response.toString());
+                        try {
+                            JSONObject jsonObject = (JSONObject) response.get(0);
+
+                            textView.setText(jsonObject.getString("name"));
+                            oneSignalId = jsonObject.getString("oneSignalID");
+                            webSignalID = jsonObject.getString("webSignalID");
+
+                            Glide.with(getApplicationContext())
+                                    .load(jsonObject.getString("imageYolu"))
+                                    .centerCrop()
+                                    .into(imageView_photo);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.wtf("ChatAct request", "error : " + error);
+                    }
+                }
+        );
+        queue.add(getRequest);
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -153,7 +210,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy (HH:mm:ss)");
                 final String zaman = sdf.format(new Date());
 
-                databaseReferenceChats.getRef().child(roomName).push().setValue(new Mesaj(gonderen, mesaj, zaman));
+                databaseReferenceChats.getRef().child(roomName).push().setValue(new Mesaj(gonderen, mesaj, userId+"",zaman));
                 editText.setText("");
 
                 // 'small_icon':'"+R.drawable.ic_stat_onesignal_default+"',
@@ -164,6 +221,19 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+                if (webSignalID != null)
+                    try {
+                        OneSignal.postNotification(new JSONObject("{'contents': {'en':" + mesaj + "}, 'include_player_ids': ['" + webSignalID + "'],'data':{'chatId':" + userId + "}}"), null);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                break;
+            case R.id.linlay:
+                if (chatId != -1 && userType == 1) {
+                    Intent intent = new Intent(ChatActivity.this, CvActivity.class);
+                    intent.putExtra("id", chatId);
+                    startActivity(intent);
+                }
                 break;
         }
     }

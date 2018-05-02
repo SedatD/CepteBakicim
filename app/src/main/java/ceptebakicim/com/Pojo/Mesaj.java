@@ -7,14 +7,15 @@ package ceptebakicim.com.Pojo;
  */
 
 public class Mesaj {
-    private String gonderen, mesaj, zaman;
+    private String gonderen, mesaj, userID,zaman;
 
     public Mesaj() {
     }
 
-    public Mesaj(String gonderen, String mesaj, String zaman) {
+    public Mesaj(String gonderen, String mesaj,String userID,String zaman) {
         this.gonderen = gonderen;
         this.mesaj = mesaj;
+        this.userID = userID;
         this.zaman = zaman;
     }
 
@@ -29,4 +30,9 @@ public class Mesaj {
     public String getZaman() {
         return zaman;
     }
+
+    public String getUserID() {
+        return userID;
+    }
+
 }
