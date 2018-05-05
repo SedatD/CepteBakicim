@@ -1,5 +1,7 @@
 package ceptebakicim.com;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -215,23 +217,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(MainActivity.this, ProfileActivity.class));
                 break;
             case R.id.btnLogout:
-                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.remove("userId");
-                editor.remove("userType");
-                editor.remove("userName");
-                editor.remove("userEmail");
-                editor.remove("userPhoto");
-                editor.apply();
-                startActivity(new Intent(this, LoginActivity.class));
-                finish();
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Uyarı");
+                builder.setMessage("Çıkış yapmak istediğinize emin misiniz?");
+                builder.setNegativeButton("İPTAL", new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int id) {
 
-                AuthUI.getInstance().signOut(this).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(MainActivity.this, "Çıkış yaptınız", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+                builder.setPositiveButton("EVET", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.remove("userId");
+                        editor.remove("userType");
+                        editor.remove("userName");
+                        editor.remove("userEmail");
+                        editor.remove("userPhoto");
+                        editor.remove("mEmail");
+                        editor.remove("mPassword");
+                        editor.apply();
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                        finish();
+
+                        AuthUI.getInstance().signOut(MainActivity.this).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(MainActivity.this, "Çıkış yaptınız", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+
+                builder.show();
                 break;
         }
     }

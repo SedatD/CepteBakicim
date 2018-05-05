@@ -76,6 +76,7 @@ public class ChatPublicAileActivity extends AppCompatActivity implements View.On
 
             }
         });
+
     }
 
     @Override
@@ -89,7 +90,8 @@ public class ChatPublicAileActivity extends AppCompatActivity implements View.On
                 final String zaman = sdf.format(new Date());
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 int userId = preferences.getInt("userId", -1);
-                databaseReferencePublicAileChat.getRef().push().setValue(new Mesaj(gonderen, mesaj,userId+"", zaman));
+                String name = preferences.getString("userName", "");
+                databaseReferencePublicAileChat.getRef().push().setValue(new Mesaj(gonderen, mesaj, userId + "", zaman, name));
                 break;
         }
     }

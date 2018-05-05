@@ -35,8 +35,10 @@ import ceptebakicim.com.R;
 public class TeklifDetayActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView textView_durum;
     private ListView listView;
-    private int interview, userId,service;
-    private String osi;
+    private int interview, userId, service;
+    private String osi, webSignalID;
+    private Button btn_bakici_isten_cik;
+    private LinearLayout linLayBottomButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,20 +49,26 @@ public class TeklifDetayActivity extends AppCompatActivity implements View.OnCli
         listView = findViewById(R.id.listView);
         Button button_pos = findViewById(R.id.button_pos);
         Button button_neg = findViewById(R.id.button_neg);
-        LinearLayout linLayBottomButton = findViewById(R.id.linLayBottomButton);
+        btn_bakici_isten_cik = findViewById(R.id.btn_bakici_isten_cik);
+        linLayBottomButton = findViewById(R.id.linLayBottomButton);
         LinearLayout linLayAile = findViewById(R.id.linLayAile);
         button_pos.setOnClickListener(this);
         button_neg.setOnClickListener(this);
+        btn_bakici_isten_cik.setOnClickListener(this);
         listView.setClickable(false);
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         userId = preferences.getInt("userId", -1);
         int userType = preferences.getInt("userType", -1);
 
-        if (userType == 1)
+        if (userType == 1) {
+            linLayAile.setVisibility(View.VISIBLE);
             linLayBottomButton.setVisibility(View.GONE);
-        else if (userType == 2 || userType == 3)
+        } else if (userType == 2 || userType == 3) {
             linLayAile.setVisibility(View.GONE);
+            //linLayBottomButton.setVisibility(View.VISIBLE);
+        }
+
 
         Bundle bundle = getIntent().getExtras();
         interview = bundle.getInt("interview");
@@ -76,19 +84,23 @@ public class TeklifDetayActivity extends AppCompatActivity implements View.OnCli
                     public void onResponse(String response) {
                         Log.wtf("TeklifDetayAct", "Response : " + response);
                         try {
-                            final ArrayList<String> list = new ArrayList<String>();
-
                             JSONArray jsonArray = new JSONArray(response);
                             JSONObject jsonObject = (JSONObject) jsonArray.get(0);
 
                             osi = jsonObject.getString("oneSignalID");
+                            webSignalID = jsonObject.getString("webSignalID");
 
                             if (jsonObject.getInt("status") == 0) {
                                 textView_durum.setText("Beklemede");
                                 textView_durum.setTextColor(getResources().getColor(R.color.beklemede));
+
+                                linLayBottomButton.setVisibility(View.VISIBLE);
                             } else if (jsonObject.getInt("status") == 1) {
                                 textView_durum.setText("Onaylanan");
                                 textView_durum.setTextColor(getResources().getColor(R.color.onaylanan));
+
+                                linLayBottomButton.setVisibility(View.GONE);
+                                btn_bakici_isten_cik.setVisibility(View.VISIBLE);
                             }
 
                             ArrayList<CvPojo> dataModels = new ArrayList<>();
@@ -140,7 +152,7 @@ public class TeklifDetayActivity extends AppCompatActivity implements View.OnCli
         queue.add(stringRequest);
     }
 
-    private void postReq(final int sorgu) {
+    private void postReq(final int sorgu, final int temp) {
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext().getApplicationContext());
         StringRequest stringRequest = new StringRequest(
                 Request.Method.GET,
@@ -160,8 +172,17 @@ public class TeklifDetayActivity extends AppCompatActivity implements View.OnCli
                             else
                                 text = "Bakıcı teklifinizi kabul etti";
 
+                            if (temp == 1)
+                                text = "Bakıcı işten ayrıldı";
+
                             try {
                                 OneSignal.postNotification(new JSONObject("{'contents': {'en':'" + text + "'}, 'include_player_ids': ['" + osi + "'],'data':{'caryId':" + userId + "}}"), null);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                            try {
+                                OneSignal.postNotification(new JSONObject("{'contents': {'en':'" + text + "'}, 'include_player_ids': ['" + webSignalID + "'],'data':{'caryId':" + userId + "}}"), null);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -186,10 +207,13 @@ public class TeklifDetayActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_pos:
-                postReq(1);
+                postReq(1, -1);
                 break;
             case R.id.button_neg:
-                postReq(0);
+                postReq(0, -1);
+                break;
+            case R.id.btn_bakici_isten_cik:
+                postReq(3, 1);
                 break;
         }
     }

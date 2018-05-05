@@ -3,8 +3,10 @@ package ceptebakicim.com.Activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.SharedPreferences;
@@ -99,9 +101,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         int userId = preferences.getInt("userId", -1);
         int userType = preferences.getInt("userType", -1);
-        if (userId != -1 || userType != -1) {
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-            finish();
+
+        if (userId != -1 && userType != -1) {
+            //startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            //finish();
+            String mEmail = preferences.getString("mEmail", null);
+            String mPassword = preferences.getString("mPassword", null);
+            if (mEmail != null && mPassword != null)
+                Request(mEmail, mPassword);
         }
 
         mEmailView = findViewById(email);
@@ -132,10 +139,26 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         findViewById(R.id.textView_kayit).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, KayitOlActivity.class));
+                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                builder.setTitle("Uyarı");
+                builder.setMessage("Uygulamayı ne olarak kullanacaksınız?");
+                builder.setNegativeButton("BAKICIYIM", new DialogInterface.OnClickListener(){
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse("geo:41.0062817,28.9579634?q=" + Uri.encode("Sonsuz Danışmanlık")));
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
+                });
+
+                builder.setPositiveButton("AİLEYİM", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        startActivity(new Intent(LoginActivity.this, KayitOlActivity.class));
+                    }
+                });
+                builder.show();
             }
         });
-
 
     }
 
@@ -161,10 +184,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 SharedPreferences.Editor editor = preferences.edit();
                                 editor.putInt("userId", response.getInt("id"));
                                 editor.putInt("userType", response.getInt("userType"));
+                                editor.putString("mEmail", mEmail);
+                                editor.putString("mPassword", mPassword);
                                 editor.putString("userName", response.getString("name"));
                                 editor.putString("userEmail", response.getString("email"));
                                 editor.putString("userPhoto", response.getString("imageYolu"));
                                 editor.apply();
+
+                                //response.getInt("okundu");
 
                                 signIn(mEmail, mPassword, response.getString("name"));
                             } else {

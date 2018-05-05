@@ -7,16 +7,17 @@ package ceptebakicim.com.Pojo;
  */
 
 public class Mesaj {
-    private String gonderen, mesaj, userID,zaman;
+    private String gonderen, mesaj, userID, zaman, name;
 
     public Mesaj() {
     }
 
-    public Mesaj(String gonderen, String mesaj,String userID,String zaman) {
+    public Mesaj(String gonderen, String mesaj, String userID, String zaman, String name) {
         this.gonderen = gonderen;
         this.mesaj = mesaj;
         this.userID = userID;
         this.zaman = zaman;
+        this.name = name;
     }
 
     public String getGonderen() {
@@ -33,6 +34,10 @@ public class Mesaj {
 
     public String getUserID() {
         return userID;
+    }
+
+    public String getName() {
+        return name;
     }
 
 }

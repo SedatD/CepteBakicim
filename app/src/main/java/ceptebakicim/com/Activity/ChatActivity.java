@@ -59,6 +59,8 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
     private ImageView imageView_photo;
 
+    private String name;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +88,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         userId = preferences.getInt("userId", -1);
         userType = preferences.getInt("userType", -1);
+        name = preferences.getString("userName", "");
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -210,7 +213,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy (HH:mm:ss)");
                 final String zaman = sdf.format(new Date());
 
-                databaseReferenceChats.getRef().child(roomName).push().setValue(new Mesaj(gonderen, mesaj, userId+"",zaman));
+                databaseReferenceChats.getRef().child(roomName).push().setValue(new Mesaj(gonderen, mesaj, userId + "", zaman,name));
                 editText.setText("");
 
                 // 'small_icon':'"+R.drawable.ic_stat_onesignal_default+"',

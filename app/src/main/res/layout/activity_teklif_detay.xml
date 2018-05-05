@@ -26,6 +26,7 @@
         android:id="@+id/linLayAile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
@@ -71,16 +72,17 @@
         android:id="@+id/linLayBottomButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/button_neg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:layout_weight="1"
             android:background="@drawable/isten_cikart"
             android:text="reddet"
@@ -90,13 +92,26 @@
             android:id="@+id/button_pos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:layout_weight="1"
             android:text="kabul et"
             android:background="@drawable/ise_al"
             android:textColor="@color/white" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_bakici_isten_cik"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:background="@drawable/isten_cikart"
+        android:textColor="@color/white"
+        android:text="İŞten ayrIl"
+        android:layout_marginBottom="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>

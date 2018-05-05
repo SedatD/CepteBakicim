@@ -46,7 +46,7 @@ public class CvActivity extends AppCompatActivity implements View.OnClickListene
     private int interviewId = -1;
     private int mItem = -1;
     private int mItem2 = -1;
-    private String osi;
+    private String osi, webSignalID;
     private TextView textName, textNat, textAge;
     private int userType = -1;
 
@@ -102,6 +102,7 @@ public class CvActivity extends AppCompatActivity implements View.OnClickListene
                             JSONObject jsonObject = (JSONObject) response.get(0);
 
                             osi = jsonObject.getString("oneSignalID");
+                            webSignalID = jsonObject.getString("webSignalID");
 
                             Glide.with(getApplicationContext()).load(jsonObject.getString("imageYolu")).into(imageView);
 
@@ -235,7 +236,6 @@ public class CvActivity extends AppCompatActivity implements View.OnClickListene
                         if (Integer.parseInt(response) == 1) {
                             Toast.makeText(CvActivity.this, "İstek işleme alındı", Toast.LENGTH_SHORT).show();
                             try {
-                                Log.wtf("osi ", "" + osi);
                                 String text = "";
                                 if (iseAl == 0)
                                     text = "İşe alınmadınız";
@@ -246,6 +246,20 @@ public class CvActivity extends AppCompatActivity implements View.OnClickListene
 
                                 OneSignal.postNotification(new JSONObject("{'contents': {'en':'" + text + "'}, 'include_player_ids': ['" + osi + "']}"), null);
                                 //OneSignal.postNotification(new JSONObject("{'contents': {'en':'" + text + "'}, 'include_player_ids': ['" + osi + "'],'data':{'interviewid':" + interviewId + ",'serviceid':" + serviceID + "}}"), null);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                            try {
+                                String text = "";
+                                if (iseAl == 0)
+                                    text = "İşe alınmadınız";
+                                else if (iseAl == 1)
+                                    text = "İşe alındınız";
+                                else if (iseAl == -1)
+                                    text = "İşten çıkartıldınız";
+
+                                OneSignal.postNotification(new JSONObject("{'contents': {'en':'" + text + "'}, 'include_player_ids': ['" + webSignalID + "']}"), null);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -281,6 +295,12 @@ public class CvActivity extends AppCompatActivity implements View.OnClickListene
                             Toast.makeText(CvActivity.this, "Teklif gönderildi", Toast.LENGTH_SHORT).show();
                             try {
                                 OneSignal.postNotification(new JSONObject("{'contents': {'en':'Yeni bir teklifin var'}, 'include_player_ids': ['" + osi + "'],'data':{'banaOzel':" + true + "}}"), null);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                            try {
+                                OneSignal.postNotification(new JSONObject("{'contents': {'en':'Yeni bir teklifin var'}, 'include_player_ids': ['" + webSignalID + "'],'data':{'banaOzel':" + true + "}}"), null);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

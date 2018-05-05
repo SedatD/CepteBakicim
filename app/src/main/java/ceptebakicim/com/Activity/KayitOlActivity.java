@@ -49,6 +49,7 @@ public class KayitOlActivity extends AppCompatActivity {
                     request(mname, memail, mtel, mpassword);
                 else
                     Toast.makeText(KayitOlActivity.this, "Bu alanlar boş bırakılamaz", Toast.LENGTH_SHORT).show();
+
             }
         });
 

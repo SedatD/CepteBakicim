@@ -90,7 +90,8 @@ public class ChatPublicActivity extends AppCompatActivity implements View.OnClic
                 final String zaman = sdf.format(new Date());
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 int userId = preferences.getInt("userId", -1);
-                databaseReferencePublicChat.getRef().push().setValue(new Mesaj(gonderen, mesaj, userId+"",zaman));
+                String name = preferences.getString("userName", "");
+                databaseReferencePublicChat.getRef().push().setValue(new Mesaj(gonderen, mesaj, userId+"",zaman,name));
                 break;
         }
     }
