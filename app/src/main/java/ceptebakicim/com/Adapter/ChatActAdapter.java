@@ -55,21 +55,17 @@ public class ChatActAdapter extends BaseAdapter {
         if (mesaj.getGonderen().equals(fUser.getEmail())) {
             satir = layoutInflater.inflate(R.layout.custom_sag, null);
 
-            TextView mail1 = satir.findViewById(R.id.textViewBen);
             TextView mesaj1 = satir.findViewById(R.id.textViewMesajim);
             TextView zaman1 = satir.findViewById(R.id.textViewZamanim);
 
-            mail1.setText(mesaj.getName());
             mesaj1.setText(mesaj.getMesaj());
             zaman1.setText(mesaj.getZaman());
         } else {
             satir = layoutInflater.inflate(R.layout.custom_sol, null);
 
-            TextView mail2 = satir.findViewById(R.id.textViewGonderenKisi);
             TextView mesaj2 = satir.findViewById(R.id.textViewMesaji);
             TextView zaman2 = satir.findViewById(R.id.textViewZamani);
 
-            mail2.setText(mesaj.getName());
             mesaj2.setText(mesaj.getMesaj());
             zaman2.setText(mesaj.getZaman());
         }
