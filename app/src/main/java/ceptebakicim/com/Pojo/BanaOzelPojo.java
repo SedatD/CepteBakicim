@@ -1,5 +1,7 @@
 package ceptebakicim.com.Pojo;
 
+import org.json.JSONObject;
+
 /**
  * Created by SD on 22.02.2018.
  * dilmacsedat@gmail.com
@@ -7,32 +9,13 @@ package ceptebakicim.com.Pojo;
  */
 
 public class BanaOzelPojo {
-    private int serviceID,familyID,interviewID,interviewStatus;
     private String typeTitle,name;
+    private JSONObject jsonObject;
 
-    public BanaOzelPojo(int serviceID, int familyID, int interviewID, int interviewStatus, String typeTitle, String name) {
-        this.serviceID = serviceID;
-        this.familyID = familyID;
-        this.interviewID = interviewID;
-        this.interviewStatus = interviewStatus;
+    public BanaOzelPojo(String typeTitle, String name,JSONObject jsonObject) {
         this.typeTitle = typeTitle;
         this.name = name;
-    }
-
-    public int getServiceID() {
-        return serviceID;
-    }
-
-    public int getFamilyID() {
-        return familyID;
-    }
-
-    public int getInterviewID() {
-        return interviewID;
-    }
-
-    public int getInterviewStatus() {
-        return interviewStatus;
+        this.jsonObject = jsonObject;
     }
 
     public String getTypeTitle() {
@@ -41,6 +24,10 @@ public class BanaOzelPojo {
 
     public String getName() {
         return name;
+    }
+
+    public JSONObject getJsonObject() {
+        return jsonObject;
     }
 
 }

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,10 +66,8 @@ public class BanaOzelAdapter extends RecyclerView.Adapter<BanaOzelAdapter.DataOb
             imageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.wtf("BanaOzelAdapter","service id : " + mDataset.get(getAdapterPosition()).getServiceID());
                     Intent intent = new Intent(mContext, TeklifDetayActivity.class);
-                    intent.putExtra("pos", mDataset.get(getAdapterPosition()).getServiceID());
-                    intent.putExtra("interview", mDataset.get(getAdapterPosition()).getInterviewID());
+                    intent.putExtra("jsonObj", mDataset.get(getAdapterPosition()).getJsonObject() + "");
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     mContext.startActivity(intent);
                 }

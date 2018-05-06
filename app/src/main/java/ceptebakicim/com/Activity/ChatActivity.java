@@ -48,17 +48,13 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     private FirebaseUser firebaseUser;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReferenceChats, databaseReferenceUsers;
-
     private TextView textView;
     private EditText editText;
     private ImageButton buttonSend;
     private ListView listView;
-
     private int userId, userType, chatId;
     private String roomName, oneSignalId = null, webSignalID = null;
-
     private ImageView imageView_photo;
-
     private String name;
 
     @Override
@@ -83,12 +79,20 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
             finish();
         }
 
-        request(chatId);
-
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         userId = preferences.getInt("userId", -1);
         userType = preferences.getInt("userType", -1);
         name = preferences.getString("userName", "");
+
+        if (userType != -1) {
+            int temp = 1;
+            if (userType == 1)
+                temp = 2;
+            request(chatId, temp);
+        } else {
+            Toast.makeText(this, "Bir hata oluştu. Tekrar deneyiniz.", Toast.LENGTH_LONG).show();
+            finish();
+        }
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -130,48 +134,11 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
-
-        /*databaseReferenceUsers.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren())
-                    if (Integer.parseInt(ds.getKey()) == chatId) {
-                        User user = ds.getValue(User.class);
-                        if (user != null) {
-                            textView.setText(user.getName());
-                            oneSignalId = user.getOneSignalId();
-                        } else {
-                            Toast.makeText(ChatActivity.this, "Bir hata oluştu. Tekrar deneyiniz.", Toast.LENGTH_LONG).show();
-                            finish();
-                        }
-                    }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });*/
-
-        /*databaseReferenceChats.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });*/
-
     }
 
-    private void request(int id) {
+    private void request(int id, int userType) {
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext().getApplicationContext());
-        final String url = "https://www.ceptebakicim.com/json/userList?userType=2&userId=" + id;
+        final String url = "https://www.ceptebakicim.com/json/userList?userType=" + userType + "&userId=" + id;
         JsonArrayRequest getRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -213,7 +180,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy (HH:mm:ss)");
                 final String zaman = sdf.format(new Date());
 
-                databaseReferenceChats.getRef().child(roomName).push().setValue(new Mesaj(gonderen, mesaj, userId + "", zaman,name));
+                databaseReferenceChats.getRef().child(roomName).push().setValue(new Mesaj(gonderen, mesaj, userId + "", zaman, name));
                 editText.setText("");
 
                 // 'small_icon':'"+R.drawable.ic_stat_onesignal_default+"',

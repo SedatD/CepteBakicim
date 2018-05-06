@@ -31,7 +31,7 @@ import ceptebakicim.com.Pojo.BanaOzelPojo;
 import ceptebakicim.com.R;
 
 public class BakiciBanaOzelActivity extends AppCompatActivity implements View.OnClickListener {
-    private RecyclerView recyclerView_bana_ozel,recyclerView_bana_ozel2;
+    private RecyclerView recyclerView_bana_ozel, recyclerView_bana_ozel2;
     private TextView textView;
     private Button btnview1, btnview2;
 
@@ -73,18 +73,16 @@ public class BakiciBanaOzelActivity extends AppCompatActivity implements View.On
                         try {
                             JSONArray jsonArray = new JSONArray(response);
                             //if (jsonArray.length() == 0)
-                                //textView.setVisibility(View.VISIBLE);
+                            //textView.setVisibility(View.VISIBLE);
 
                             ArrayList results = new ArrayList<BanaOzelPojo>();
                             BanaOzelPojo obj;
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = (JSONObject) jsonArray.get(i);
-                                obj = new BanaOzelPojo(jsonObject.getInt("serviceID"),
-                                        jsonObject.getInt("familyID"),
-                                        jsonObject.getInt("interviewID"),
-                                        jsonObject.getInt("interviewStatus"),
+                                obj = new BanaOzelPojo(
                                         jsonObject.getString("typeTitle"),
-                                        jsonObject.getString("name"));
+                                        jsonObject.getString("name"),
+                                        jsonObject);
                                 results.add(obj);
                             }
                             recyclerView_bana_ozel.setAdapter(new BanaOzelAdapter(results, getApplicationContext()));
@@ -113,18 +111,16 @@ public class BakiciBanaOzelActivity extends AppCompatActivity implements View.On
                         try {
                             JSONArray jsonArray = new JSONArray(response);
                             //if (jsonArray.length() == 0)
-                                //textView.setVisibility(View.VISIBLE);
+                            //textView.setVisibility(View.VISIBLE);
 
                             ArrayList results = new ArrayList<BanaOzelPojo>();
                             BanaOzelPojo obj;
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = (JSONObject) jsonArray.get(i);
-                                obj = new BanaOzelPojo(jsonObject.getInt("serviceID"),
-                                        jsonObject.getInt("familyID"),
-                                        jsonObject.getInt("interviewID"),
-                                        jsonObject.getInt("interviewStatus"),
+                                obj = new BanaOzelPojo(
                                         jsonObject.getString("typeTitle"),
-                                        jsonObject.getString("name"));
+                                        jsonObject.getString("name"),
+                                        jsonObject);
                                 results.add(obj);
                             }
                             recyclerView_bana_ozel2.setAdapter(new BanaOzelAdapter(results, getApplicationContext()));

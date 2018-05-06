@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import ceptebakicim.com.Adapter.ChatActAdapter;
+import ceptebakicim.com.Adapter.ChatPublicActAdapter;
 import ceptebakicim.com.Pojo.Mesaj;
 import ceptebakicim.com.R;
 
@@ -52,7 +52,7 @@ public class ChatPublicActivity extends AppCompatActivity implements View.OnClic
         databaseReferencePublicChat = firebaseDatabase.getReference("PublicChat");
 
         final ArrayList<Mesaj> mesajList = new ArrayList<>();
-        final ChatActAdapter adapter = new ChatActAdapter(this, mesajList, firebaseUser);
+        final ChatPublicActAdapter adapter = new ChatPublicActAdapter(this, mesajList, firebaseUser);
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy (HH:mm:ss)");
         final String zaman = sdf.format(new Date());

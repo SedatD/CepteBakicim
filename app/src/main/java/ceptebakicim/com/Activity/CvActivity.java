@@ -193,7 +193,7 @@ public class CvActivity extends AppCompatActivity implements View.OnClickListene
                             if (jsonObject.getInt("userType") == 2) {
                                 //bakıcı
                                 dataModels.add(new CvPojo("Çocuk Bakım", jsonObject.getString("cocukBakim")));
-                                dataModels.add(new CvPojo("Hasta Bakım", jsonObject.getString("hastaBakim")));
+                                //dataModels.add(new CvPojo("Hasta Bakım", jsonObject.getString("hastaBakim")));
                                 dataModels.add(new CvPojo("Yaşlı Bakım", jsonObject.getString("yasliBakim")));
                                 dataModels.add(new CvPojo("Temizlik", jsonObject.getString("temizlik")));
                                 dataModels.add(new CvPojo("Yemek", jsonObject.getString("yemek")));

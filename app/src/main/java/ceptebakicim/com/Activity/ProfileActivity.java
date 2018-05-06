@@ -1,5 +1,7 @@
 package ceptebakicim.com.Activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -136,7 +138,21 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button:
-                postRequest(editText_phone.getText().toString(), editText_address.getText().toString());
+                AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
+                builder.setTitle("Uyarı");
+                builder.setMessage("Bu işlemi yapmak istediğinize emin misiniz?");
+                builder.setNegativeButton("HAYIR", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                });
+
+                builder.setPositiveButton("EVET", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        postRequest(editText_phone.getText().toString(), editText_address.getText().toString());
+                    }
+                });
+                builder.show();
                 break;
             case R.id.imageView:
 

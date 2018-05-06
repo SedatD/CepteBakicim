@@ -102,15 +102,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         int userId = preferences.getInt("userId", -1);
         int userType = preferences.getInt("userType", -1);
 
-        if (userId != -1 && userType != -1) {
-            //startActivity(new Intent(LoginActivity.this, MainActivity.class));
-            //finish();
-            String mEmail = preferences.getString("mEmail", null);
-            String mPassword = preferences.getString("mPassword", null);
-            if (mEmail != null && mPassword != null)
-                Request(mEmail, mPassword);
-        }
-
         mEmailView = findViewById(email);
         populateAutoComplete();
 
@@ -159,6 +150,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 builder.show();
             }
         });
+
+        if (userId != -1 && userType != -1) {
+            //startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            //finish();
+            String mEmail = preferences.getString("mEmail", null);
+            String mPassword = preferences.getString("mPassword", null);
+            if (mEmail != null && mPassword != null){
+                Request(mEmail, mPassword);
+                showProgress(true);
+            }
+        }
 
     }
 
@@ -243,6 +245,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                     databaseReference = firebaseDatabase.getReference("Users");
                     databaseReference.getRef().child(userId + "").setValue(new User(mName, mEmail));
+
+                    showProgress(false);
 
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
