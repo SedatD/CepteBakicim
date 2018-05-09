@@ -143,7 +143,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 builder.setMessage("Bu işlemi yapmak istediğinize emin misiniz?");
                 builder.setNegativeButton("HAYIR", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-
+                        finish();
                     }
                 });
 

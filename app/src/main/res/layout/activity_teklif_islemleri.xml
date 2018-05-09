@@ -125,21 +125,6 @@
             android:layout_margin="10dp">
 
             <Button
-                android:id="@+id/btn3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/btn3"
-                android:paddingLeft="10dp"
-                android:text="hasta\nbakımı"
-                android:textAlignment="textStart"
-                android:textColor="#ffffff"
-                android:textSize="13sp"
-                tools:ignore="RtlCompat" />
-
-            <Button
                 android:id="@+id/btn4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -150,6 +135,22 @@
                 android:paddingLeft="10dp"
                 android:text="ev\ntemizliği"
                 android:textAlignment="textStart"
+                android:textColor="#ffffff"
+                android:textSize="13sp"
+                tools:ignore="RtlCompat" />
+
+            <Button
+                android:id="@+id/btn3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn3"
+                android:paddingLeft="10dp"
+                android:text="hasta\nbakımı"
+                android:textAlignment="textStart"
+                android:visibility="invisible"
                 android:textColor="#ffffff"
                 android:textSize="13sp"
                 tools:ignore="RtlCompat" />

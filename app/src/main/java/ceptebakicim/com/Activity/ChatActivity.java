@@ -47,7 +47,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReferenceChats, databaseReferenceUsers;
+    private DatabaseReference databaseReferenceChats;
     private TextView textView;
     private EditText editText;
     private ImageButton buttonSend;
@@ -98,7 +98,6 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         firebaseUser = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReferenceChats = firebaseDatabase.getReference("Chats");
-        databaseReferenceUsers = firebaseDatabase.getReference("Users");
 
         final ArrayList<Mesaj> mesajList = new ArrayList<>();
         final ChatActAdapter adapter = new ChatActAdapter(this, mesajList, firebaseUser);
@@ -112,8 +111,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         else
             roomName = userId + "-" + chatId;
 
-        databaseReferenceChats.getRef().child(roomName).child("updateTime").setValue(zaman);
-        databaseReferenceUsers.child(userId + "").child("updateTime").setValue(zaman);
+        //databaseReferenceChats.getRef().child(roomName).child("updateTime").setValue(zaman);
 
         databaseReferenceChats.addValueEventListener(new ValueEventListener() {
             @Override

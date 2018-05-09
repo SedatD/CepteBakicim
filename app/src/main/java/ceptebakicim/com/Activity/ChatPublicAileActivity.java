@@ -57,7 +57,7 @@ public class ChatPublicAileActivity extends AppCompatActivity implements View.On
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy (HH:mm:ss)");
         final String zaman = sdf.format(new Date());
 
-        databaseReferencePublicAileChat.getRef().child("updateTime").setValue(zaman);
+        //databaseReferencePublicAileChat.getRef().child("updateTime").setValue(zaman);
 
         databaseReferencePublicAileChat.addValueEventListener(new ValueEventListener() {
             @Override

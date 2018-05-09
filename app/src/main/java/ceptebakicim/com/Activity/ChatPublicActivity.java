@@ -57,7 +57,7 @@ public class ChatPublicActivity extends AppCompatActivity implements View.OnClic
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy (HH:mm:ss)");
         final String zaman = sdf.format(new Date());
 
-        databaseReferencePublicChat.getRef().child("updateTime").setValue(zaman);
+        //databaseReferencePublicChat.getRef().child("updateTime").setValue(zaman);
 
         databaseReferencePublicChat.addValueEventListener(new ValueEventListener() {
             @Override

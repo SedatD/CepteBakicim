@@ -54,7 +54,6 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReferenceChats = firebaseDatabase.getReference("Chats");
-        final DatabaseReference databaseReferenceUsers = firebaseDatabase.getReference("Users");
 
         databaseReferenceChats.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -87,24 +86,6 @@ public class ChatRoomActivity extends AppCompatActivity {
                             reqUserType = 2;
 
                         request(chatId, reqUserType);
-
-                        /*final String[] name = new String[1];
-                        DatabaseReference child = databaseReferenceUsers.child(chatId + "").child("name");
-                        final int finalChatId = chatId;
-                        child.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                name[0] = dataSnapshot.getValue(String.class);
-                                obj[0] = new ChatRoomPojo(finalChatId, name[0]);
-                                results.add(obj[0]);
-                                recyclerView_chat_room.setAdapter(new ChatRoomAdapter(results, getApplicationContext()));
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-
-                            }
-                        });*/
                     }
                 }
             }

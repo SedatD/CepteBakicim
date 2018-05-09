@@ -60,7 +60,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ceptebakicim.com.MainActivity;
-import ceptebakicim.com.Pojo.User;
 import ceptebakicim.com.R;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -243,8 +242,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
                     logUser(userId, mEmail, mName);
 
-                    databaseReference = firebaseDatabase.getReference("Users");
-                    databaseReference.getRef().child(userId + "").setValue(new User(mName, mEmail));
+                    //databaseReference = firebaseDatabase.getReference("Users");
+                    //databaseReference.getRef().child(userId + "").setValue(new User(mName, mEmail));
 
                     showProgress(false);
 
@@ -264,11 +263,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Log.wtf("LoginAct createUser", "Success / task : " + task);
-
-                    /*SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                    int userId = preferences.getInt("userId", -1);
-                    databaseReference = firebaseDatabase.getReference("Users");
-                    databaseReference.getRef().child(userId + "").setValue(new User(mName, mEmail, OneSignal.getPermissionSubscriptionState().getSubscriptionStatus().getUserId()));*/
 
                     signIn(mEmail, mPassword, mName);
                 } else {
