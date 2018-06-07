@@ -96,6 +96,7 @@
         <activity
             android:name=".Activity.KayitOlActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".Yonetici.YoneticiMainActivity"></activity>
     </application>
 
 </manifest>

@@ -12,7 +12,7 @@
     <string name="prompt_password">Şifre</string>
     <string name="action_sign_in">Giriş Yap</string>
     <string name="error_invalid_email">Email geçersiz</string>
-    <string name="error_invalid_password">Şifre çok kısa</string>
+    <string name="error_invalid_password">Şifre en az 6 karakter olmalıdır</string>
     <string name="error_incorrect_password">Şifre yanlış</string>
     <string name="error_field_required">Bu alan zorunludur</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>

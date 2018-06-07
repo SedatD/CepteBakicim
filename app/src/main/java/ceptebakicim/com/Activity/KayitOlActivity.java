@@ -16,9 +16,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.onesignal.OneSignal;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -65,15 +62,18 @@ public class KayitOlActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Log.wtf("KayitOlActivity", "Response : " + response);
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            if (jsonObject.getBoolean("status")) {
+                        int aq = Integer.parseInt(response);
+                        switch (aq) {
+                            case 1:
                                 Toast.makeText(KayitOlActivity.this, "Kaydınız işleme alındı onay beklemektedir", Toast.LENGTH_LONG).show();
                                 finish();
-                            } else
-                                Toast.makeText(KayitOlActivity.this, "İşlem başarısız", Toast.LENGTH_SHORT).show();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                                break;
+                            case 2:
+                                Toast.makeText(KayitOlActivity.this, "İşlem başarısız", Toast.LENGTH_LONG).show();
+                                break;
+                            case 3:
+                                Toast.makeText(KayitOlActivity.this, "Bu email kullanılmaktadır. Başka email deneyiniz", Toast.LENGTH_LONG).show();
+                                break;
                         }
                     }
                 },
@@ -87,11 +87,12 @@ public class KayitOlActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> jsonParams = new HashMap<String, String>();
-                jsonParams.put("name", mname);
-                jsonParams.put("email", memail);
-                jsonParams.put("pass", mpassword);
-                jsonParams.put("phone", mtel);
-                jsonParams.put("osi", OneSignal.getPermissionSubscriptionState().getSubscriptionStatus().getUserId());
+                jsonParams.put("name", mname + "");
+                jsonParams.put("email", memail + "");
+                jsonParams.put("pass", mpassword + "");
+                jsonParams.put("phone", mtel + "");
+                jsonParams.put("osi", OneSignal.getPermissionSubscriptionState().getSubscriptionStatus().getUserId() + "");
+                Log.wtf("KayitOlActivity", "jsonParams : " + jsonParams);
                 return jsonParams;
             }
 

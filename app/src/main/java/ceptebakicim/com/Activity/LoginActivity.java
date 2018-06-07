@@ -192,8 +192,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 editor.putString("userPhoto", response.getString("imageYolu"));
                                 editor.apply();
 
-                                //response.getInt("okundu");
-
                                 signIn(mEmail, mPassword, response.getString("name"));
                             } else {
                                 showProgress(false);
@@ -201,6 +199,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                                 mPasswordView.requestFocus();
                             }
                         } catch (JSONException e) {
+                            try {
+                                response.getInt("wpID");
+                                Log.wtf("asd","yonetici yonetici");
+                            } catch (JSONException e1) {
+                                e1.printStackTrace();
+                            }
                             e.printStackTrace();
                         }
                     }
@@ -369,7 +373,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private boolean isPasswordValid(String password) {
-        return password.length() > 0;
+        return password.length() > 5;
     }
 
     /**

@@ -25,7 +25,7 @@ android {
     defaultConfig {
         applicationId "ceptebakicim.com"
         minSdkVersion 16
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 3
         versionName "3.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
