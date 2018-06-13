@@ -9,10 +9,12 @@ import org.json.JSONObject;
  */
 
 public class BanaOzelPojo {
+    private boolean isTum;
     private String typeTitle,name;
     private JSONObject jsonObject;
 
-    public BanaOzelPojo(String typeTitle, String name,JSONObject jsonObject) {
+    public BanaOzelPojo(boolean isTum, String typeTitle, String name, JSONObject jsonObject) {
+        this.isTum = isTum;
         this.typeTitle = typeTitle;
         this.name = name;
         this.jsonObject = jsonObject;
@@ -28,6 +30,10 @@ public class BanaOzelPojo {
 
     public JSONObject getJsonObject() {
         return jsonObject;
+    }
+
+    public boolean isTum() {
+        return isTum;
     }
 
 }

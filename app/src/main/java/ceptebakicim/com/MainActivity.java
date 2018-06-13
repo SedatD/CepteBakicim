@@ -128,10 +128,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         try {
                             if (mUserType == 1) {
                                 //aile
-
-                                //kabul bekleyen - 1
                                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                                 SharedPreferences.Editor editor = preferences.edit();
+
+                                //kabul bekleyen - 1
                                 editor.putString("kabulBekleyen", response.getJSONArray("kabulBekleyen") + "");
                                 JSONArray jsonArray_kabulBekleyen = response.getJSONArray("kabulBekleyen");
 
@@ -142,25 +142,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 editor.apply();
 
                                 //gorusmede oldugum - 2
-                                JSONArray jsonArray_gorusmedeOldugum = response.getJSONArray("gorusmedeOldugum");
+                                //JSONArray jsonArray_gorusmedeOldugum = response.getJSONArray("gorusmedeOldugum");
 
                                 //daha once gorustugum - 2
-                                JSONArray jsonArray_dahaOnceGorustugum = response.getJSONArray("dahaOnceGorustugum");
+                                //JSONArray jsonArray_dahaOnceGorustugum = response.getJSONArray("dahaOnceGorustugum");
 
                             } else if (mUserType == 2) {
                                 //bakici
 
                                 //tum teklifler - 3
-                                JSONArray jsonArray_tumTeklifler = response.getJSONArray("tumTeklifler");
+                                //JSONArray jsonArray_tumTeklifler = response.getJSONArray("tumTeklifler");
 
                                 //gorusmede oldugum bakici - 4
-                                JSONArray jsonArray_gorusmedeOldugum = response.getJSONArray("gorusmedeOldugum");
-
-                            } else if (mUserType == 3) {
-                                //erkek isci
-
-                            } else if (mUserType == 4) {
-                                //firma
+                                //JSONArray jsonArray_gorusmedeOldugum = response.getJSONArray("gorusmedeOldugum");
 
                             }
                         } catch (JSONException e) {

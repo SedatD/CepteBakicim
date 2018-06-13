@@ -101,6 +101,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         int userId = preferences.getInt("userId", -1);
         int userType = preferences.getInt("userType", -1);
+        int wpID = preferences.getInt("wpID", -1);
 
         mEmailView = findViewById(email);
         populateAutoComplete();
@@ -133,7 +134,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                 builder.setTitle("Uyarı");
                 builder.setMessage("Uygulamayı ne olarak kullanacaksınız?");
-                builder.setNegativeButton("BAKICIYIM", new DialogInterface.OnClickListener(){
+                builder.setNegativeButton("BAKICIYIM", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent intent = new Intent(Intent.ACTION_VIEW);
                         intent.setData(Uri.parse("geo:41.0062817,28.9579634?q=" + Uri.encode("Sonsuz Danışmanlık")));
@@ -156,10 +157,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             //finish();
             String mEmail = preferences.getString("mEmail", null);
             String mPassword = preferences.getString("mPassword", null);
-            if (mEmail != null && mPassword != null){
+            if (mEmail != null && mPassword != null) {
                 Request(mEmail, mPassword);
                 showProgress(true);
             }
+        } else if (wpID != -1) {
+            Intent intent = new Intent(LoginActivity.this, YoneticiMainActivity.class);
+            intent.putExtra("wpID", wpID);
+            startActivity(intent);
         }
 
     }
@@ -201,12 +206,18 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             }
                         } catch (JSONException e) {
                             try {
-                                Log.wtf("asd","yonetici yonetici");
+                                Log.wtf("asd", "yonetici yonetici");
                                 showProgress(false);
+
+                                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.putInt("wpID", response.getInt("wpID"));
+                                editor.apply();
+
                                 Intent intent = new Intent(LoginActivity.this, YoneticiMainActivity.class);
-                                intent.putExtra("wpID",response.getInt("wpID"));
-                                intent.putExtra("oneSignalID",response.getString("oneSignalID"));
-                                intent.putExtra("fullName",response.getString("fullName"));
+                                intent.putExtra("wpID", response.getInt("wpID"));
+                                intent.putExtra("oneSignalID", response.getString("oneSignalID"));
+                                intent.putExtra("fullName", response.getString("fullName"));
                                 startActivity(intent);
                             } catch (JSONException e1) {
                                 e1.printStackTrace();

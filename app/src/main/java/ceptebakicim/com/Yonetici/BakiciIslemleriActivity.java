@@ -55,11 +55,9 @@ public class BakiciIslemleriActivity extends AppCompatActivity implements View.O
             wpID = bundle.getInt("wpID", -1);
         }
 
-        Button button_kamera = findViewById(R.id.button_kamera);
         Button button_galeri = findViewById(R.id.button_galeri);
         Button button_gonder = findViewById(R.id.button_gonder);
 
-        button_kamera.setOnClickListener(this);
         button_galeri.setOnClickListener(this);
         button_gonder.setOnClickListener(this);
 
@@ -284,8 +282,6 @@ public class BakiciIslemleriActivity extends AppCompatActivity implements View.O
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.button_kamera:
-                break;
             case R.id.button_galeri:
                 Intent intent = new Intent();
                 intent.setType("image/*");

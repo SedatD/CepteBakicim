@@ -47,6 +47,10 @@ public class BanaOzelAdapter extends RecyclerView.Adapter<BanaOzelAdapter.DataOb
     public void onBindViewHolder(BanaOzelAdapter.DataObjectHolder holder, int position) {
         if (position % 2 == 0)
             holder.cardView.setBackgroundColor(mContext.getResources().getColor(R.color.lightRed));
+
+        if (mDataset.get(position).isTum())
+            holder.imageButton.setVisibility(View.GONE);
+
         holder.textView_name.setText(mDataset.get(position).getName());
         holder.textView_typeTitle.setText(mDataset.get(position).getTypeTitle());
     }

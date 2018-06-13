@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/wall"
-    tools:context="ceptebakicim.com.Activity.BakiciBanaOzelActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="ceptebakicim.com.Activity.BakiciBanaOzelActivity">
 
     <ImageView
         android:layout_width="150dp"
@@ -26,29 +26,38 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="19sp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="Mevcut bir teklif yoktur."
         android:textColor="#ffffff"
-        android:layout_marginTop="10dp"
+        android:textSize="19sp"
         android:visibility="gone" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView_bana_ozel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
         android:layout_marginTop="10dp"
+        android:layout_weight="1"
         android:scrollbars="vertical" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView_bana_ozel2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
-        android:layout_weight="1"
         android:layout_marginTop="10dp"
-        android:scrollbars="vertical" />
+        android:layout_weight="1"
+        android:scrollbars="vertical"
+        android:visibility="gone" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView_bana_ozel3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:scrollbars="vertical"
+        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -73,6 +82,16 @@
             android:layout_weight="1"
             android:background="#9CDBB2"
             android:text="kabul ettİklerİm"
+            android:textColor="#ffffff"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/btnview3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#9CDBB2"
+            android:text="tÜm teklİfler"
             android:textColor="#ffffff"
             android:textSize="13sp" />
     </LinearLayout>

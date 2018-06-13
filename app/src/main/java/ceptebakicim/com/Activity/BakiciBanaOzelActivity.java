@@ -31,9 +31,9 @@ import ceptebakicim.com.Pojo.BanaOzelPojo;
 import ceptebakicim.com.R;
 
 public class BakiciBanaOzelActivity extends AppCompatActivity implements View.OnClickListener {
-    private RecyclerView recyclerView_bana_ozel, recyclerView_bana_ozel2;
+    private RecyclerView recyclerView_bana_ozel, recyclerView_bana_ozel2,recyclerView_bana_ozel3;
     private TextView textView;
-    private Button btnview1, btnview2;
+    private Button btnview1, btnview2, btnview3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +43,7 @@ public class BakiciBanaOzelActivity extends AppCompatActivity implements View.On
         textView = findViewById(R.id.textView);
         recyclerView_bana_ozel = findViewById(R.id.recyclerView_bana_ozel);
         recyclerView_bana_ozel2 = findViewById(R.id.recyclerView_bana_ozel2);
+        recyclerView_bana_ozel3 = findViewById(R.id.recyclerView_bana_ozel3);
 
         recyclerView_bana_ozel.setHasFixedSize(true);
         recyclerView_bana_ozel.setLayoutManager(new LinearLayoutManager(this));
@@ -50,10 +51,15 @@ public class BakiciBanaOzelActivity extends AppCompatActivity implements View.On
         recyclerView_bana_ozel2.setHasFixedSize(true);
         recyclerView_bana_ozel2.setLayoutManager(new LinearLayoutManager(this));
 
+        recyclerView_bana_ozel3.setHasFixedSize(true);
+        recyclerView_bana_ozel3.setLayoutManager(new LinearLayoutManager(this));
+
         btnview1 = findViewById(R.id.btnview1);
         btnview2 = findViewById(R.id.btnview2);
+        btnview3 = findViewById(R.id.btnview3);
         btnview1.setOnClickListener(this);
         btnview2.setOnClickListener(this);
+        btnview3.setOnClickListener(this);
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         int userId = preferences.getInt("userId", -1);
@@ -79,7 +85,7 @@ public class BakiciBanaOzelActivity extends AppCompatActivity implements View.On
                             BanaOzelPojo obj;
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = (JSONObject) jsonArray.get(i);
-                                obj = new BanaOzelPojo(
+                                obj = new BanaOzelPojo(false,
                                         jsonObject.getString("typeTitle"),
                                         jsonObject.getString("name"),
                                         jsonObject);
@@ -101,7 +107,7 @@ public class BakiciBanaOzelActivity extends AppCompatActivity implements View.On
         queue.add(stringRequest);
     }
 
-    private void getRequest2(int userId) {
+    private void getRequest2(final int userId) {
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext().getApplicationContext());
         StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://www.ceptebakicim.com/json/bakiciTeklifler?teklif=1&userid=" + userId,
                 new Response.Listener<String>() {
@@ -117,13 +123,51 @@ public class BakiciBanaOzelActivity extends AppCompatActivity implements View.On
                             BanaOzelPojo obj;
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = (JSONObject) jsonArray.get(i);
-                                obj = new BanaOzelPojo(
+                                obj = new BanaOzelPojo(false,
                                         jsonObject.getString("typeTitle"),
                                         jsonObject.getString("name"),
                                         jsonObject);
                                 results.add(obj);
                             }
                             recyclerView_bana_ozel2.setAdapter(new BanaOzelAdapter(results, getApplicationContext()));
+                            getRequest3(userId);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.wtf("BakiciBanaOzelAct", "Error : " + error);
+                    }
+                });
+        queue.add(stringRequest);
+    }
+
+    private void getRequest3(final int userId) {
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext().getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://www.ceptebakicim.com/json/bakiciTeklifler?teklif=2&userid=" + userId,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.wtf("BakiciBanaOzelAct", "Response : " + response);
+                        try {
+                            JSONArray jsonArray = new JSONArray(response);
+                            //if (jsonArray.length() == 0)
+                            //textView.setVisibility(View.VISIBLE);
+
+                            ArrayList results = new ArrayList<BanaOzelPojo>();
+                            BanaOzelPojo obj;
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+                                obj = new BanaOzelPojo(true,
+                                        jsonObject.getString("typeTitle"),
+                                        jsonObject.getString("name"),
+                                        jsonObject);
+                                results.add(obj);
+                            }
+                            recyclerView_bana_ozel3.setAdapter(new BanaOzelAdapter(results, getApplicationContext()));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -147,7 +191,9 @@ public class BakiciBanaOzelActivity extends AppCompatActivity implements View.On
                 textView.setVisibility(View.GONE);
 
                 btnview2.setTextColor(Color.parseColor("#ffffff"));
+                btnview3.setTextColor(Color.parseColor("#ffffff"));
                 recyclerView_bana_ozel2.setVisibility(View.GONE);
+                recyclerView_bana_ozel3.setVisibility(View.GONE);
                 Toast.makeText(this, "Gelen Teklifler", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnview2:
@@ -156,9 +202,23 @@ public class BakiciBanaOzelActivity extends AppCompatActivity implements View.On
                 textView.setVisibility(View.GONE);
 
                 btnview1.setTextColor(Color.parseColor("#ffffff"));
+                btnview3.setTextColor(Color.parseColor("#ffffff"));
                 recyclerView_bana_ozel.setVisibility(View.GONE);
+                recyclerView_bana_ozel3.setVisibility(View.GONE);
                 Toast.makeText(this, "Kabul Ettiğim Teklifler", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btnview3:
+                btnview3.setTextColor(Color.parseColor("#000000"));
+                recyclerView_bana_ozel3.setVisibility(View.VISIBLE);
+                textView.setVisibility(View.GONE);
+
+                btnview1.setTextColor(Color.parseColor("#ffffff"));
+                btnview2.setTextColor(Color.parseColor("#ffffff"));
+                recyclerView_bana_ozel.setVisibility(View.GONE);
+                recyclerView_bana_ozel2.setVisibility(View.GONE);
+                Toast.makeText(this, "Tüm Teklifler", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
+
 }
