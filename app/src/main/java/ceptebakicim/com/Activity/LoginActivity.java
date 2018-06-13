@@ -61,6 +61,7 @@ import java.util.List;
 
 import ceptebakicim.com.MainActivity;
 import ceptebakicim.com.R;
+import ceptebakicim.com.Yonetici.YoneticiMainActivity;
 
 import static android.Manifest.permission.READ_CONTACTS;
 import static ceptebakicim.com.R.id.email;
@@ -200,8 +201,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                             }
                         } catch (JSONException e) {
                             try {
-                                response.getInt("wpID");
                                 Log.wtf("asd","yonetici yonetici");
+                                showProgress(false);
+                                Intent intent = new Intent(LoginActivity.this, YoneticiMainActivity.class);
+                                intent.putExtra("wpID",response.getInt("wpID"));
+                                intent.putExtra("oneSignalID",response.getString("oneSignalID"));
+                                intent.putExtra("fullName",response.getString("fullName"));
+                                startActivity(intent);
                             } catch (JSONException e1) {
                                 e1.printStackTrace();
                             }
