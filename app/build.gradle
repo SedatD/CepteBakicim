@@ -25,9 +25,9 @@ android {
     defaultConfig {
         applicationId "ceptebakicim.com"
         minSdkVersion 16
-        targetSdkVersion 21
-        versionCode 4
-        versionName "4.0"
+        targetSdkVersion 23
+        versionCode 5
+        versionName "5.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         manifestPlaceholders = [onesignal_app_id               : "9d1cca6b-6b2c-43a3-b041-6b31d8c66852",
